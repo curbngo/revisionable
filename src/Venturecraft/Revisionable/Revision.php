@@ -5,6 +5,7 @@ namespace Venturecraft\Revisionable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Support\Facades\Log;
+use DateTimeInterface;
 
 /**
  * Revision.
@@ -289,5 +290,16 @@ class Revision extends Eloquent
         } else {
             return $value;
         }
+    }
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }
